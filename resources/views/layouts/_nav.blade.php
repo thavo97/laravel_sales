@@ -64,7 +64,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{route('expirations.index')}}">
+            <a class="nav-link" href="">
                 <i class="fas fa-calendar-times menu-icon"></i>
                 <span class="menu-title">Caducidades</span>
             </a>
