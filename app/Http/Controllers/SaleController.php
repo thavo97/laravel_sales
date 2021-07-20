@@ -35,7 +35,7 @@ class SaleController extends Controller
 
     public function index()
     {
-        $sales = Sale::get();
+        $sales = Sale::orderBy('sale_date','desc')->get();
         return view('admin.sale.index', compact('sales'));
     }
     public function create()
@@ -50,14 +50,14 @@ class SaleController extends Controller
         $sale = Sale::create($request->all()+[
             'user_id'=>Auth::user()->id,
             'sale_date'=>Carbon::now('America/Mexico_City'),
-        ]);
+        ]); 
         foreach ($request->product_id as $key => $id) {
             $sale->update_stock($request->product_id[$key],$request->quantity[$key]);
             $results[] = array("product_id"=>$request->product_id[$key], "quantity"=>$request->quantity[$key], "price"=>$request->price[$key], "discount"=>$request->discount[$key]);
             
         }
         $sale->saleDetails()->createMany($results);
-        return redirect()->route('sales.index');
+        return redirect()->route('sales.show',$sale->id);
     }
     
     public function show(Sale $sale)

@@ -85,15 +85,15 @@
                     <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId" required>
                 </div>
                 <div class="form-group">
-                    <label for="dni">DNI</label>
-                    <input type="number" class="form-control" name="dni" id="dni" aria-describedby="helpId" required>
+                    <label for="dni">RFC</label>
+                    <input type="number" class="form-control" name="rfc_client" id="rfc_client" aria-describedby="helpId" required>
                 </div>
 
                 <input type="hidden" name="sale" value="1">
 
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-success">Registrar</button>
+                <button type="submit" class="btn btn-success">Aceptar</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
             </div>
 
@@ -121,6 +121,8 @@ $(document).ready(function () {
 });
 
 var cont = 1;
+total_ganancia = 0;
+sub_ganancia = [];
 total = 0;
 subtotal = [];
 $("#guardar").hide();
@@ -140,6 +142,7 @@ var product_id = $('#product_id');
                 $("#price").val(data.sell_price);
                 $("#stock").val(data.stock);
                 $("#code").val(data.code);
+                $("#gain").val(data.sell_price-data.purchase_price);
         }
     });
 });
@@ -159,6 +162,7 @@ function obtener_registro(code){
             $("#price").val(data.sell_price);
             $("#stock").val(data.stock);
             $("#product_id").val(data.id);
+            $("#gain").val(data.sell_price-data.purchase_price);
         }
     });
 }
@@ -186,6 +190,9 @@ function agregar() {
         if (parseInt(stock) >= parseInt(quantity)) {
             subtotal[cont] = (quantity * price) - (quantity * price * discount / 100);
             total = total + subtotal[cont];
+            sub_ganancia[cont] = (quantity * ganancia);
+            total_ganancia = total_ganancia + sub_ganancia[cont]; 
+            
             var fila = '<tr class="selected" id="fila' + cont + '"><td><button type="button" class="btn btn-danger btn-sm" onclick="eliminar(' + cont + ');"><i class="fa fa-times fa-2x"></i></button></td> <td><input type="hidden" name="product_id[]" value="' + product_id + '">' + producto + '</td> <td> <input type="hidden" name="price[]" value="' + parseFloat(price).toFixed(2) + '"> <input class="form-control" type="number" value="' + parseFloat(price).toFixed(2) + '" disabled> </td> <td> <input type="hidden" name="discount[]" value="' + parseFloat(discount) + '"> <input class="form-control" type="number" value="' + parseFloat(discount) + '" disabled> </td> <td> <input type="hidden" name="quantity[]" value="' + quantity + '"> <input type="number" value="' + quantity + '" class="form-control" disabled> </td> <td align="right">s/' + parseFloat(subtotal[cont]).toFixed(2) + '</td></tr>';
             cont++;
             limpiar();
@@ -210,10 +217,8 @@ function limpiar() {
     $("#discount").val("0");
 }
 function totales() {
-    $("#total").html("MX " + total.toFixed(2));
-
-    total_ganancia = total * ganancia / 100;
-    total_pagar = total + total_ganancia;
+    //$("#total").html("MX " + total.toFixed(2));
+    total_pagar = total;
     $("#total_ganancia").html("MX " + total_ganancia.toFixed(2));
     $("#total_pagar_html").html("MX " + total_pagar.toFixed(2));
     $("#total_pagar").val(total_pagar.toFixed(2));
@@ -227,8 +232,8 @@ function evaluar() {
 }
 function eliminar(index) {
     total = total - subtotal[index];
-    total_ganancia = total * ganancia / 100;
-    total_pagar_html = total + total_ganancia;
+    total_ganancia = total_ganancia - sub_ganancia[index];
+    total_pagar_html = total;
     $("#total").html("MX" + total);
     $("#total_ganancia").html("MX" + total_ganancia);
     $("#total_pagar_html").html("MX" + total_pagar_html);

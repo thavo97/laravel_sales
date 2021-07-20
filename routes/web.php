@@ -18,6 +18,7 @@ Route::get('/', function() {
     return redirect()->route('login');
 });
 
+
 Route::get('sales/reports_day', 'ReportController@reports_day')->name('reports.day');
 Route::get('sales/reports_date', 'ReportController@reports_date')->name('reports.date');
 

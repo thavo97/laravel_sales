@@ -55,26 +55,16 @@
                                         <th>Precio Venta (MX)</th>
                                         <th>Descuento(MX)</th>
                                         <th>Cantidad</th>
-                                        <th>SubTotal(MX)</th>
+                                        <th>Importe</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
-
                                     <tr>
                                         <th colspan="4">
-                                            <p align="right">SUBTOTAL:</p>
+                                            <p align="right">TOTAL GANANCIA ({{$sale->gain}}):</p>
                                         </th>
                                         <th>
-                                            <p align="right">s/{{number_format($subtotal,2)}}</p>
-                                        </th>
-                                    </tr>
-
-                                    <tr>
-                                        <th colspan="4">
-                                            <p align="right">TOTAL GANANCIA ({{$sale->gain}}%):</p>
-                                        </th>
-                                        <th>
-                                            <p align="right">s/{{number_format($subtotal*$sale->gain/100,2)}}</p>
+                                            <p align="right">s/{{number_format($sale->gain)}}</p>
                                         </th>
                                     </tr>
                                     <tr>
@@ -104,7 +94,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-muted">
-                    <a href="{{route('sales.index')}}" class="btn btn-primary float-right">Regresar</a>
+                    <a href="{{route('sales.create')}}" class="btn btn-primary float-right">Regresar</a>
                 </div>
             </div>
         </div>

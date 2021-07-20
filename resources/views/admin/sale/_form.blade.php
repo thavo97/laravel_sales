@@ -27,38 +27,39 @@
     </div>
     <div class="form-group col-md-4">
         <div class="form-group">
+            <label for="quantity">Cantidad</label>
+            <input type="number" class="form-control" name="quantity" id="quantity" aria-describedby="helpId">
+        </div>
+    </div>
+    <div class="form-group col-md-4">
+        <div class="form-group">
             <label for="">Stock actual</label>
             <input type="text" name="" id="stock" value="" class="form-control" disabled>
           </div>
     </div>
-    <div class="form-group col-md-4">
-        <div class="form-group">
-            <label for="price">Precio de venta</label>
-            <input type="number" class="form-control" name="price" id="price" aria-describedby="helpId" disabled>
-        </div>
-    </div>
+    
   </div>
 
 
 
 
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
         <div class="form-group">
-            <label for="quantity">Cantidad</label>
-            <input type="number" class="form-control" name="quantity" id="quantity" aria-describedby="helpId">
+            <label for="price">Precio de venta</label>
+            <input type="number" class="form-control" name="price" id="price" aria-describedby="helpId" disabled>
         </div>
     </div>
-    <div class="form-group col-md-3">
-        <label for="gain">Impuesto</label>
+    <div class="form-group col-md-4">
+        <label for="gain">Ganancia por Producto</label>
         <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3">%</span>
+                <span class="input-group-text" id="basic-addon3">$</span>
             </div>
-            <input type="number" class="form-control" name="gain" id="gain" aria-describedby="basic-addon3" value="18">
+            <input type="number" class="form-control" name="gain" id="gain" aria-describedby="basic-addon3" value="0" >
         </div>
     </div>
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-4">
         <label for="discount">Porcentaje de descuento</label>
         <div class="input-group">
             <div class="input-group-prepend">
@@ -86,24 +87,24 @@
                 <tr>
                     <th>Eliminar</th>
                     <th>Producto</th>
-                    <th>Precio Venta (MX)</th>
+                    <th>Precio</th>
                     <th>Descuento</th>
                     <th>Cantidad</th>
-                    <th>SubTotal (MX)</th>
+                    <th>Importe</th>
                 </tr>
             </thead>
             <tfoot>
-                <tr>
+                <!--tr>
                     <th colspan="5">
                         <p align="right">TOTAL:</p>
                     </th>
                     <th>
                         <p align="right"><span id="total">MX 0.00</span> </p>
                     </th>
-                </tr>
+                </tr-->
                 <tr>
                     <th colspan="5">
-                        <p align="right">TOTAL GANANCIA (18%):</p>
+                        <p align="right">TOTAL GANANCIA:</p>
                     </th>
                     <th>
                         <p align="right"><span id="total_ganancia">MX 0.00</span></p>
